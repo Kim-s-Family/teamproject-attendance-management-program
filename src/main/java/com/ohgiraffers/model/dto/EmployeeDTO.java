@@ -5,6 +5,8 @@ import java.io.Serializable;
 public class EmployeeDTO implements Serializable {
 
 
+
+
         private String empId;               // 직원 ID
         private String empPwd;              // 직원 PW
         private String empName;             // 직원 이름

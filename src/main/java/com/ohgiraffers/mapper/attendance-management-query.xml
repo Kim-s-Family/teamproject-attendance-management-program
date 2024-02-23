@@ -1,5 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
+    <comment/>
+    <entry key="insertNewEmployee">
+        Insert
+        Into emp_info
+        (
+        emp_id
+        ,   emp_password
+        ,   emp_name
+        ,   phone
+        ,   email
+        ,   department_code
+        ,   position_code
+        ,   emp_identification
+        ,   payment_code
+        )
+        Values
+        (
+        ?
+        ,   ?
+        ,   ?
+        ,   ?
+        ,   ?
+        ,   ?
+        ,   ?
+        ,   ?
+        ,   ?
+        )
+    </entry>
 
 </properties>
