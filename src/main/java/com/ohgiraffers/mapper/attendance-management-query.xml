@@ -6,12 +6,15 @@
 
     <!-- 회사원 로그인 -->
     <entry key="loginEmployee">
-        SELECT emp_id,
-        emp_password,
-        position_code FROM emp_info
+        SELECT emp_id, emp_password, position_code AS positionCode FROM emp_info
         WHERE emp_id = ?
         AND emp_password = ?
+    </entry>
 
+    <entry key="loginAdminTrueOrFalse">
+        SELECT et.position_name, et.position_code, et.authorization_access  FROM emp_info ei
+        left outer join emp_position et on ei.position_code = et.position_code
+        WHERE ei.emp_id = ? AND  ei.emp_password = ?
     </entry>
 
 
