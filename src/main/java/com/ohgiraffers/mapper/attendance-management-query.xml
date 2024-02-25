@@ -2,4 +2,12 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
+    <comment/>
+    <entry key="changeEmpInfo">
+        UPDATE
+        emp_info
+        SET
+
+    </entry>
+
 </properties>
