@@ -29,5 +29,27 @@
         ,   ?
         )
     </entry>
+    <entry key="updateEmpInfo">
+        UPDATE emp_info
+        SET emp_id=?
+        , emp_password=?
+        , emp_name=?
+        , phone=?
+        , email=?
+        , department_code=?
+        , position_code=?
+        , emp_identification=?
+        WHERE payment_code=?
+    </entry>
+    <entry key="updateAttendanceRecord">
+        UPDATE attendance_record
+        SET attendance_code=?
+        , emp_id=?
+        , arrival_at_work=?
+        , leave_work=?
+        , late_work=?
+        , vacation=?
+        WHERE day_off=?
+    </entry>
 
 </properties>
