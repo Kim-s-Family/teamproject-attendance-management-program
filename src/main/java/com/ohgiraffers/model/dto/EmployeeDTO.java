@@ -2,7 +2,7 @@ package com.ohgiraffers.model.dto;
 
 import java.io.Serializable;
 
-public class EmployeeDTO implements Serializable {
+public class EmployeeDTO implements java.io.Serializable {
 
 
 

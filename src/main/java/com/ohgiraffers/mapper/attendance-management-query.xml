@@ -7,14 +7,14 @@
         Into emp_info
         (
         emp_id
-        ,   emp_password
-        ,   emp_name
-        ,   phone
-        ,   email
-        ,   department_code
-        ,   position_code
-        ,   emp_identification
-        ,   payment_code
+        , emp_password
+        , emp_name
+        , phone
+        , email
+        , department_code
+        , position_code
+        , emp_identification
+        , payment_code
         )
         Values
         (
@@ -31,15 +31,15 @@
     </entry>
     <entry key="updateEmpInfo">
         UPDATE emp_info
-        SET emp_id=?
-        , emp_password=?
+        SET emp_password=?
         , emp_name=?
         , phone=?
         , email=?
         , department_code=?
         , position_code=?
         , emp_identification=?
-        WHERE payment_code=?
+        , payment_code=?
+        Where emp_id=?
     </entry>
     <entry key="updateAttendanceRecord">
         UPDATE attendance_record
