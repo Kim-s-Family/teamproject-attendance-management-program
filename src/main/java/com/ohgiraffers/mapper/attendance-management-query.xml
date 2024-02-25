@@ -6,12 +6,13 @@
 
     <!-- 회사원 로그인 -->
     <entry key="loginEmployee">
-        SELECT * FROM
-        emp_info
-        WHERE emp_id  = ?
+        SELECT emp_id,
+        emp_password,
+        position_code FROM emp_info
+        WHERE emp_id = ?
         AND emp_password = ?
-    </entry>
 
+    </entry>
 
 
     <!-- 회사원 리스트-->

@@ -21,7 +21,7 @@ public class EmployeeDAO {
         System.out.println("connection");
         try {
             prop.loadFromXML(new FileInputStream("src/main/java/com/ohgiraffers/mapper/attendance-management-query.xml"));
-            System.out.println("connenction2");
+            System.out.println("connenction");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -30,18 +30,20 @@ public class EmployeeDAO {
     public String loginEmployee(Connection con, String empId, String empPwd) {
         PreparedStatement pstmt = null;
         ResultSet rset = null;
-        String isLoggedIn = null;
+        String userPosition = null;
+//        String isLoggedIn = null;
         String query = prop.getProperty("loginEmployee");
 
         try {
             pstmt = con.prepareStatement(query);
             pstmt.setString(1, empId);
             pstmt.setString(2, empPwd);
-
+//            pstmt.setString(3, userPosition);
             rset = pstmt.executeQuery();
             if (rset.next()) {
-                // If there's a result, login credentials are correct
-                isLoggedIn = "로그인이 완료 되어습니다";
+                // 로그인 성공 시 사용자 권한 가져옴
+                userPosition = rset.getString("position_code");
+//                isLoggedIn = "로그인이 완료 되어습니다";
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -64,8 +66,42 @@ public class EmployeeDAO {
             }
         }
 
-        return isLoggedIn;
+        return userPosition;
     }
+    // 사용자 권한에 따라 처리하는 메서드
+    public void processUserFunctionality(Connection con, String userposition) {
+        switch (userposition) {
+            case "ADMIN":
+                // 관리자 권한 기능 실행
+                 adminFunction(con);
+                break;
+            case "MGR":
+                // 중간 관리자 권한 기능 실행
+                 managerFunction(con);
+                break;
+            case "EMP":
+                // 일반 사용자 권한 기능 실행
+                 userFunction(con);
+                break;
+            default:
+                System.out.println("알 수 없는 사용자입니다. ");
+        }
+    }
+
+    private void adminFunction(Connection con) {
+        // 관리자 기능 처리
+    }
+
+    private void managerFunction(Connection con) {
+        // 중간 관리자 기능 처리
+    }
+
+    private void userFunction(Connection con) {
+        //일반 사용자 기능 처리
+    }
+
+
+
 
 
     public Integer createEmployee(Connection con, CreateEmployeeDTO createEmployeeDTO) {
