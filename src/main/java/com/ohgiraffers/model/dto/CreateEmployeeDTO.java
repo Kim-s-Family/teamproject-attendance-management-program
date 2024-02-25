@@ -1,10 +1,6 @@
 package com.ohgiraffers.model.dto;
 
-import java.io.Serializable;
-
-public class EmployeeDTO implements Serializable {
-
-
+public class CreateEmployeeDTO {
     private String empId;               // 직원 ID
     private String empPwd;              // 직원 PW
     private String empName;             // 직원 이름
@@ -16,13 +12,13 @@ public class EmployeeDTO implements Serializable {
     private String paymentCode;         // 급여코드(PM1 ~ PM5) PM1 : 800 / PM2 : 500 / PM3 : 400 / PM4 : 300 / PM5 : 200
 
     /* 기본생성자 생성 */
-    public EmployeeDTO() {
+    public CreateEmployeeDTO() {
 
     }
 
     /* 매개변수가 있는 생성자 생성 */
 
-    public EmployeeDTO(String empId, String empPwd, String empName, String phone, String email, String departmentCode, String positionCode, String empIdentification, String paymentCode) {
+    public CreateEmployeeDTO(String empId, String empPwd, String empName, String phone, String email, String departmentCode, String positionCode, String empIdentification, String paymentCode) {
         this.empId = empId;
         this.empPwd = empPwd;
         this.empName = empName;
@@ -123,5 +119,3 @@ public class EmployeeDTO implements Serializable {
                 '}';
     }
 }
-
-
