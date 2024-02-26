@@ -35,6 +35,7 @@ public class EmployeeDTO implements java.io.Serializable {
         this.empIdentification = empIdentification;
         this.paymentCode = paymentCode;
     }
+
     /* getter / setter 생성 */
 
     public String getEmpId() {

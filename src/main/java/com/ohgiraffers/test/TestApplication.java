@@ -14,9 +14,12 @@ public class TestApplication{
     public static void main(String[] args) {
 
         /*정보입력 InsertNewEmployee*/
-        EmployeeDAO registerDAO = new EmployeeDAO();
-        registerDAO.insertNewEmployee();
+//        EmployeeDAO registerDAO = new EmployeeDAO();
+//        registerDAO.insertNewEmployee();
 
+
+        EmployeeDAO changeDAO=new EmployeeDAO();
+        changeDAO.changeEmpInfo();
     }
 
 }
