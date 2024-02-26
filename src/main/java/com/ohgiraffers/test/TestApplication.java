@@ -15,7 +15,7 @@ public class TestApplication {
         EmployeeDAO employeeDAO = new EmployeeDAO();
 
 
-        employeeDAO.selectAllEmpCount(con);
+        employeeDAO.selectAllEmpList(con);
 
 
 

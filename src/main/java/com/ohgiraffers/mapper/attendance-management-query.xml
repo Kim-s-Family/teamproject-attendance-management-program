@@ -3,19 +3,12 @@
 <properties>
 
     <comment/>
-    <entry key="changeEmpInfo">
-        UPDATE
-        emp_info
-        SET
 
-    </entry>
-
-    <entry key="countId">
-        SELECT SUM(count) AS total_sum
-        FROM (
-        SELECT COUNT(emp_id) AS count
-        FROM emp_info
-        GROUP BY emp_id ) AS count_id;
+    <entry key="selectAllEmpId">
+        select
+        *
+        from emp_info
+        order by emp_id asc;
     </entry>
 
 </properties>
