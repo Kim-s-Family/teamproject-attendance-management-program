@@ -1,4 +1,4 @@
 package com.ohgiraffers.model.dao;
 
-public class EmployeeDAO {
+public class MgrDAO {
 }
