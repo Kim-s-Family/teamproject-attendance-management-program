@@ -1,5 +1,55 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
 <properties>
+
+    <comment/>
+
+    <!-- 회사원 로그인 -->
+    <entry key="loginEmployee">
+        SELECT emp_id, emp_password, position_code AS positionCode FROM emp_info
+        WHERE emp_id = ?
+        AND emp_password = ?
+    </entry>
+
+    <entry key="checkCompensationStatus">
+        SELECT ei.emp_id, ei.month_code, ei.compensation_status, ei.penalty_status, ei.penalty_score_sum, cm.month_name
+        FROM compensation ei
+        JOIN check_month cm ON ei.month_code = cm.month_code
+        WHERE ei.emp_id = ? AND cm.month_name = ? ;
+    </entry>
+
+    <entry key="checkLogin">
+        SELECT et.position_name, et.position_code, et.authorization_access, ei.emp_name
+        FROM emp_info ei
+        JOIN emp_position et ON ei.position_code = et.position_code
+        WHERE ei.emp_id = ? AND ei.emp_password = ?;
+    </entry>
+
+
+    <!-- 회사원 리스트-->
+    <entry key="listEmployee">
+        select
+        emp_id as empId,
+        emp_password as empPassword,
+        emp_name as empName,
+        phone as phone,
+        email as email,
+        department_code as departmentCode,
+        position_code as positionCode,
+        emp_identification as empIdentification,
+        payment_code as paymentCode
+        FROM
+        emp_info
+    </entry>
+
+    <!-- 회사원 회원가입 -->
+    <entry key="createEmployee">
+        INSERT INTO emp_info
+        (emp_id, emp_password, emp_name, phone, email, department_code, position_code, emp_identification, payment_code)
+        VALUES
+        (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    </entry>
+
 
 </properties>
