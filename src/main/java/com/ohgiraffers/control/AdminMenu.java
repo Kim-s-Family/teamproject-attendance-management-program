@@ -141,8 +141,8 @@ public class AdminMenu {
         System.out.println("▓▓      1. 직원(개인) 조회     ▓▓");
         System.out.println("▓▓      2. 직원(전체) 조회     ▓▓");
         System.out.println("▓▓      3. 근태(개인) 조회     ▓▓");
-        System.out.println("▓▓      4. 근태(지정일) 조회   ▓▓");
-        System.out.println("▓▓      5. 근태(기간) 조회     ▓▓");
+        System.out.println("▓▓  4. 전직원근태(지정일) 조회  ▓▓");
+        System.out.println("▓▓     5. 직원1인(기간) 조회   ▓▓");
         System.out.println("▓▓      6. 이 전 메 뉴        ▓▓");
         System.out.println("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
         System.out.print("번호를 입력해주세요(1 ~ 6) : ");
