@@ -17,17 +17,12 @@ public class TestApplication{
 //        EmployeeDAO registerDAO = new EmployeeDAO();
 //        registerDAO.insertNewEmployee();
 
-
+        /*정보수정 changeEmpInfo*/
         EmployeeDAO changeDAO=new EmployeeDAO();
         changeDAO.changeEmpInfo();
 
-//        Application1 application1=new Application1();
-//        application1.changeEmpInfo();
 
     }
-
-
-
 }
 
 
