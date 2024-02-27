@@ -5,9 +5,7 @@ import java.io.Serializable;
 public class EmployeeDTO implements java.io.Serializable {
 
 
-
-
-        private String empId;               // 직원 ID
+    private String empId;               // 직원 ID
         private String empPwd;              // 직원 PW
         private String empName;             // 직원 이름
         private String phone;               // 연락처(String인 이유 : 기입을 '-' 포함하기 위해)

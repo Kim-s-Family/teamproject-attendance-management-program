@@ -30,9 +30,33 @@
         )
     </entry>
     <entry key="changeEmpInfo">
-        UPDATE
-        emp_info
-        SET
-
+        UPDATE emp_info
+        SET emp_password = ?
+        , emp_name = ?
+        , phone = ?
+        , email = ?
+        , department_code = ?
+        , position_code = ?
+        , emp_identification = ?
+        , payment_code = ?
+        WHERE emp_id = ?
+    </entry>
+    <entry key="changeEmpInfo">
+        UPDATE emp_info
+        SET emp_password = ?
+        Where emp_id=?
+    </entry>
+    <entry key="dff">
+        UPDATE emp_info
+        SET emp_password = ?
+        Where emp_id=?
+        , emp_name = ?
+        , phone = ?
+        , email = ?
+        , department_code = ?
+        , position_code = ?
+        , emp_identification = ?
+        , payment_code = ?
+        WHERE emp_id = ?
     </entry>
 </properties>
