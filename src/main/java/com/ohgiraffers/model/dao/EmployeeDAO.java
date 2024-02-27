@@ -16,7 +16,9 @@ public class EmployeeDAO {
 
     private Properties prop = new Properties();
 
+
     /* xml 파일을 불러오는 생성자 */
+
     public EmployeeDAO() {
         try {
             prop.loadFromXML(new FileInputStream("src/main/java/com/ohgiraffers/mapper/attendance-management-query.xml"));
@@ -294,4 +296,7 @@ public class EmployeeDAO {
         }
     }
 
+
 }
+
+

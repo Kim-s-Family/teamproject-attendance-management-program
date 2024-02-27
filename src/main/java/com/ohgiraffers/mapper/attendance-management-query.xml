@@ -2,6 +2,7 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 
 <properties>
+
     <comment/>
 
     <!-- 회사원 로그인 -->
@@ -49,5 +50,6 @@
         VALUES
         (?, ?, ?, ?, ?, ?, ?, ?, ?)
     </entry>
+
 
 </properties>
