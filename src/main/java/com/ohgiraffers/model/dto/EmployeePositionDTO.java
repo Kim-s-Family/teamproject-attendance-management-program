@@ -5,10 +5,15 @@ public class EmployeePositionDTO {
     private String positionCode;
     private String authorizationAccess;
 
-    public EmployeePositionDTO(String positionName, String positionCode, String authorizationAccess) {
+    private String empName;
+
+
+
+    public EmployeePositionDTO(String positionName, String positionCode, String authorizationAccess, String empName) {
         this.positionName = positionName;
         this.positionCode = positionCode;
         this.authorizationAccess = authorizationAccess;
+        this.empName = empName;
     }
 
     // Getters and setters
@@ -34,5 +39,13 @@ public class EmployeePositionDTO {
 
     public void setAuthorizationAccess(String authorizationAccess) {
         this.authorizationAccess = authorizationAccess;
+    }
+
+    public String getEmpName() {
+        return empName;
+    }
+
+    public void setEmpName(String empName) {
+        this.empName = empName;
     }
 }
