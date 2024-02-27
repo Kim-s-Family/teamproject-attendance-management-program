@@ -3,6 +3,7 @@ package com.ohgiraffers.test;
 
 import com.ohgiraffers.model.dao.EmployeeDAO;
 import com.ohgiraffers.model.dto.EmployeeDTO;
+import org.w3c.dom.ls.LSOutput;
 
 import javax.swing.*;
 import java.sql.Connection;
@@ -21,8 +22,9 @@ public class TestApplication{
         EmployeeDAO changeDAO=new EmployeeDAO();
         changeDAO.changeEmpInfo();
 
-
+        System.out.println("changeDAO = " + changeDAO);
     }
+
 }
 
 
