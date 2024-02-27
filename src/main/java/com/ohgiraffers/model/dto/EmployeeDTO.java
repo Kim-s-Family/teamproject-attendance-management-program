@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 public class EmployeeDTO implements Serializable {
 
-
     private String empId;               // 직원 ID
     private String empPwd;              // 직원 PW
     private String empName;             // 직원 이름
@@ -110,18 +109,17 @@ public class EmployeeDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "EmployeeDTO{" +
-                "empId='" + empId + '\'' +
-                ", empPwd='" + empPwd + '\'' +
-                ", empName='" + empName + '\'' +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                ", departmentCode='" + departmentCode + '\'' +
-                ", positionCode='" + positionCode + '\'' +
-                ", empIdentification='" + empIdentification + '\'' +
-                ", paymentCode='" + paymentCode + '\'' +
-                '}';
+        return "직원정보[" +
+                "ID = '" + empId + '\'' +
+                ", PASSWORD = '" + empPwd + '\'' +
+                ", 이름 = '" + empName + '\'' +
+                ", 연락처 = '" + phone + '\'' +
+                ", 이메일 = '" + email + '\'' +
+                ", 부서코드 = '" + departmentCode + '\'' +
+                ", 직책코드 = '" + positionCode + '\'' +
+                ", 권한코드 = '" + empIdentification + '\'' +
+                ", 급여코드 = '" + paymentCode + '\'' +
+                ']';
     }
+
 }
-
-

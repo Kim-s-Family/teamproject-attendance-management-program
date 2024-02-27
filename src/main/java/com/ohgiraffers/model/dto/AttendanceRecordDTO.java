@@ -81,7 +81,7 @@ public class AttendanceRecordDTO {
 
     @Override
     public String toString() {
-        return  empId + "님의 "+ dateCode + " 근태정보 [" +
+        return  empId +"님의 선택날짜 : "+ dateCode + "\n근태정보 [" +
                 " 출근 = " + arrivalAtWork +
                 ", 퇴근 = " + leaveWork +
                 ", 지각 = " + lateWork +
