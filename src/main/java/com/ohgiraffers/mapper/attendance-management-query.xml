@@ -46,17 +46,39 @@
         SET emp_password = ?
         Where emp_id=?
     </entry>
-    <entry key="dff">
+    <entry key="chageEmpInfo">
         UPDATE emp_info
-        SET emp_password = ?
+        SET emp_name = ?
         Where emp_id=?
-        , emp_name = ?
-        , phone = ?
-        , email = ?
-        , department_code = ?
-        , position_code = ?
-        , emp_identification = ?
-        , payment_code = ?
-        WHERE emp_id = ?
+    </entry>
+    <entry key="changeEmpInfo">
+        UPDATE emp_info
+        SET phone = ?
+        Where emp_id=?
+    </entry>
+    <entry key="changeEmpInfo">
+        UPDATE emp_info
+        SET email = ?
+        Where emp_id=?
+    </entry>
+    <entry key="changeEmpInfo">
+        UPDATE emp_info
+        SET department_code = ?
+        Where emp_id=?
+    </entry>
+    <entry key="changeEmpInfo">
+        UPDATE emp_info
+        SET position_code = ?
+        Where emp_id=?
+    </entry>
+    <entry key="changeEmpInfo">
+        UPDATE emp_info
+        SET emp_identification = ?
+        Where emp_id=?
+    </entry>
+    <entry key="changeEmpInfo">
+        UPDATE emp_info
+        SET payment_code = ?
+        Where emp_id=?
     </entry>
 </properties>

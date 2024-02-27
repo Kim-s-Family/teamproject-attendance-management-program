@@ -18,11 +18,11 @@ public class TestApplication{
 //        registerDAO.insertNewEmployee();
 
 
-//        EmployeeDAO changeDAO=new EmployeeDAO();
-//        changeDAO.changeEmpInfo();
+        EmployeeDAO changeDAO=new EmployeeDAO();
+        changeDAO.changeEmpInfo();
 
-        Application1 application1=new Application1();
-        application1.changeEmpInfo();
+//        Application1 application1=new Application1();
+//        application1.changeEmpInfo();
 
     }
 
