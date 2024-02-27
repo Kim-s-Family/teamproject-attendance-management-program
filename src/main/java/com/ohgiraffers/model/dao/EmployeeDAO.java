@@ -75,6 +75,7 @@ public class EmployeeDAO {
                 case 5:
                     System.out.println("포상 여부 조회 호출");
                     checkCompensationStatusFuntionality();
+                    break;
                 case 99:
                     exit = true;
                     System.out.println("로그아웃 되었습니다.");
@@ -251,33 +252,46 @@ public class EmployeeDAO {
         while (!returnProgram) {
             try (Connection con = getConnection()) {
                 EmployeeDAO employeeDAO = new EmployeeDAO();
-                System.out.print("직원 ID를 입력해주세요: ");
-                String empId = sc.nextLine();
-                System.out.print("월별 근태 조회 해당 '월' 선택: ");
-                String monthCode = sc.nextLine();
 
-                EmployeeCompensationDTO employeeCompensationDTO = employeeDAO.EmployeeCompensationDTO(con, empId, monthCode);
+                while (true) {
+                    System.out.print("직원 ID를 입력해주세요: ");
+                    String empId = sc.nextLine();
+                    System.out.print("월별 근태 조회 해당 '월' 선택(예시: 1월 '월 붙여서 검색해야함'): ");
+                    String monthCode = sc.nextLine();
 
-                if (employeeCompensationDTO != null) {
-                    System.out.println("포상 여부 조회 결과:");
-                    System.out.println("직원 ID: " + employeeCompensationDTO.getEmpId());
-                    System.out.println("월 코드: " + employeeCompensationDTO.getMonthCode());
-                    System.out.println("보상 여부: " + employeeCompensationDTO.getCompensationStatus());
-                    System.out.println("페널티 여부: " + employeeCompensationDTO.getPenaltyStatus());
-                    System.out.println("페널티 점수 합계: " + employeeCompensationDTO.getPenaltyScoreSum());
-                } else {
-                    System.out.println("해당 직원 ID의 정보가 없거나 " + monthCode + "월 데이터가 없습니다.");
+                    EmployeeCompensationDTO employeeCompensationDTO = employeeDAO.EmployeeCompensationDTO(con, empId, monthCode);
+
+                    if (employeeCompensationDTO != null) {
+                        System.out.println("포상 여부 조회 결과:");
+                        System.out.println("직원 ID: " + employeeCompensationDTO.getEmpId());
+                        System.out.println("월 코드: " + employeeCompensationDTO.getMonthCode());
+                        System.out.println("보상 여부: " + employeeCompensationDTO.getCompensationStatus());
+                        System.out.println("페널티 여부: " + employeeCompensationDTO.getPenaltyStatus());
+                        System.out.println("페널티 점수 합계: " + employeeCompensationDTO.getPenaltyScoreSum());
+                    } else {
+                        System.out.println("해당 직원 ID의 정보가 없거나 " + monthCode + "월 데이터가 없습니다.");
+                        continue;
+                    }
+
+                    while (true) {
+                        System.out.println("menu로 돌아가시려면 'menu'를 입력하세요. 계속 조회를 원하시면 'continue'를 입력하세요.");
+                        String input = sc.nextLine();
+                        if (input.equalsIgnoreCase("menu")) {
+                            returnProgram = true;
+                            break;
+                        } else if (input.equalsIgnoreCase("continue")) {
+                            break;
+                        } else {
+                            System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+
+                        }
+                    }
+                    break;
                 }
-
-                System.out.println("로그아웃 하려면 'logout'을 입력하세요. 계속하려면 아무 키나 누르세요.");
-                String input = sc.nextLine();
-                if (input.equalsIgnoreCase("logout")) {
-                    returnProgram = true;
-                }
-
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
         }
     }
+
 }
