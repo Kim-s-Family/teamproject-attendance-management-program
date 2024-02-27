@@ -60,6 +60,7 @@ public class EmployeeDAO {
             System.out.println("5. 포상 여부 조회");
             System.out.println("99. 로그아웃");
             System.out.print("메뉴를 선택하세요 : ");
+            try {
             int choice = Integer.parseInt(sc.nextLine());  // 사용자로부터 입력을 받기 위해 sc(Scanner) 객체를 사용하고, 그 입력을 정수로 변환하여'choice' 변수에 저장하는 코드. Integer.parseInt() 는 문자열을 정수로 변환해주는 메서드.
             switch (choice) {
                 case 1:
@@ -84,10 +85,12 @@ public class EmployeeDAO {
                     break;
                 default:
                     System.out.println("잘못 입력하셨습니다.");
+            } return;
+        } catch (NumberFormatException e) {
+                System.out.println("숫자를 입력하세요.");
             }
-        }
     }
-
+}
     public void managerFunction(Scanner sc, EmployeeDAO employeeDAO, Connection con) {
 //        중간 관리자 권한 기능 실행
         boolean exit = false;
@@ -171,7 +174,7 @@ public class EmployeeDAO {
     }
 
     public static void loginAndProcessFuntionality() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
         try (Connection con = getConnection()) {
             EmployeeDAO employeeDAO = new EmployeeDAO();
@@ -179,19 +182,19 @@ public class EmployeeDAO {
 
             while (!exitProgram) {
                 System.out.println("로그인을 위해 'login'을 입력하세요. 프로그램을 종료하려면 'exit'을 입력하세요. ");
-                String input = scanner.nextLine();
+                String input = sc.nextLine();
                 if (input.equalsIgnoreCase("login")) {
                     System.out.print("로그인을 위해 아이디를 입력하세요: ");
-                    String empId = scanner.nextLine();
+                    String empId = sc.nextLine();
                     System.out.print("비밀번호를 입력하세요: ");
-                    String empPwd = scanner.nextLine();
+                    String empPwd = sc.nextLine();
                     EmployeePositionDTO emp_position = employeeDAO.EmployeePositionDTO(con, empId, empPwd);
 
                     if (emp_position != null) {
                         System.out.println("로그인 성공: 사용자 권한 확인 중...");
                         System.out.println("emp_position" + emp_position.getPositionCode() + " " + emp_position.getPositionName() + " " + emp_position.getEmpName());
                         // 사용자 권한에 따른 기능 실행
-                        employeeDAO.processUserFunctionality(con, emp_position.getAuthorizationAccess(), scanner);
+                        employeeDAO.processUserFunctionality(con, emp_position.getAuthorizationAccess(), sc);
                     } else {
                         System.out.println("로그인 실패: 아이디 또는 비밀번호를 확인해주세요.");
                     }
@@ -206,7 +209,7 @@ public class EmployeeDAO {
             System.out.println("오류가 발생했습니다. 프로그램을 종료합니다.");
             e.printStackTrace();
         } finally {
-            scanner.close();
+            sc.close();
             System.out.println("프로그램을 종료합니다.");
         }
     }
