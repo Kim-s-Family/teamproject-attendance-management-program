@@ -18,17 +18,25 @@ public class AdminMenu {
     public void adminMenu() {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
-        System.out.println("▓▓   근태관리프로그램(ADMIN)    ▓▓");
-        System.out.println("▓▓     1. 직원정보 입력        ▓▓");
-        System.out.println("▓▓     2. 직원정보 수정        ▓▓");
-        System.out.println("▓▓     3. 직원정보 조회        ▓▓");
-        System.out.println("▓▓     4. 직원정보 삭제        ▓▓");
-        System.out.println("▓▓     5. 포상여부 조회        ▓▓");
-        System.out.println("▓▓     6. 로 그 아 웃         ▓▓");
-        System.out.println("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+        System.out.println("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+        System.out.println("▓▓                                           ▓▓");
+        System.out.println("▓▓            근태관리프로그램(ADMIN)           ▓▓");
+        System.out.println("▓▓              1. 직원정보 입력               ▓▓");
+        System.out.println("▓▓              2. 직원정보 수정               ▓▓");
+        System.out.println("▓▓              3. 직원정보 조회               ▓▓");
+        System.out.println("▓▓              4. 직원정보 삭제               ▓▓");
+        System.out.println("▓▓              5. 포상여부 조회               ▓▓");
+        System.out.println("▓▓              6. 로 그 아 웃                ▓▓");
+        System.out.println("▓▓                                           ▓▓");
+        System.out.println("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
         System.out.println();
-        System.out.print("메뉴를 선택해 주세요 : ");
+        System.out.print("번호를 선택해 주세요 (1 ~ 6) : ");
+
+        while (!sc.hasNextInt()) {
+            System.out.println("잘못된 입력입니다. 다시 선택해주세요.");
+            System.out.print("번호를 선택해 주세요 (1 ~ 6) : ");
+            sc.next();
+        }
         int choiceNumber = sc.nextInt();
 
         switch (choiceNumber) {
@@ -71,7 +79,7 @@ public class AdminMenu {
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("로그아웃 하시겠습니까? (Y/N)");
+        System.out.print("로그아웃 하시겠습니까? (Y/N) : ");
         String typing = sc.nextLine().toUpperCase();
 
         switch (typing) {
@@ -79,7 +87,7 @@ public class AdminMenu {
             case "Y":
                 System.out.println("로그아웃 되었습니다.");
                 MainMenu goToMainMenu = new MainMenu();
-                goToMainMenu.login();
+                goToMainMenu.start();
                 break;
             case "N":
                 System.out.println("메뉴 선택창으로 돌아갑니다.");
@@ -97,15 +105,23 @@ public class AdminMenu {
     /* 정보수정 메서드 분할 */
     public void updateInfo() {
         Scanner sc = new Scanner(System.in);
-
-        System.out.println("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
-        System.out.println("▓▓   근태관리프로그램(ADMIN)    ▓▓");
-        System.out.println("▓▓       [직원정보 수정]       ▓▓");
-        System.out.println("▓▓      1. 일반정보 수정       ▓▓");
-        System.out.println("▓▓      2. 근태정보 수정       ▓▓");
-        System.out.println("▓▓      3. 이 전 메 뉴        ▓▓");
-        System.out.println("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+        System.out.println();
+        System.out.println("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+        System.out.println("▓▓                                           ▓▓");
+        System.out.println("▓▓             근태관리프로그램(ADMIN)          ▓▓");
+        System.out.println("▓▓                [직원정보 수정]              ▓▓");
+        System.out.println("▓▓                1. 일반정보 수정             ▓▓");
+        System.out.println("▓▓                2. 근태정보 수정             ▓▓");
+        System.out.println("▓▓                3. 이 전 메 뉴              ▓▓");
+        System.out.println("▓▓                                           ▓▓");
+        System.out.println("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+        System.out.println();
         System.out.print("번호를 입력해주세요(1 ~ 3) : ");
+        while (!sc.hasNextInt()) {
+            System.out.println("잘못된 입력입니다. 다시 선택해주세요.");
+            System.out.print("번호를 입력해주세요(1 ~ 3) : ");
+            sc.next();
+        }
         int choiceNumber = sc.nextInt();
 
         switch (choiceNumber) {
@@ -134,18 +150,26 @@ public class AdminMenu {
     /* 정보조회 메서드 분할 */
     public void readInfo() {
         Scanner sc = new Scanner(System.in);
-
-        System.out.println("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
-        System.out.println("▓▓   근태관리프로그램(ADMIN)    ▓▓");
-        System.out.println("▓▓       [직원정보 조회]       ▓▓");
-        System.out.println("▓▓      1. 직원(개인) 조회     ▓▓");
-        System.out.println("▓▓      2. 직원(전체) 조회     ▓▓");
-        System.out.println("▓▓      3. 근태(개인) 조회     ▓▓");
-        System.out.println("▓▓  4. 전직원근태(지정일) 조회  ▓▓");
-        System.out.println("▓▓     5. 직원1인(기간) 조회   ▓▓");
-        System.out.println("▓▓      6. 이 전 메 뉴        ▓▓");
-        System.out.println("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+        System.out.println();
+        System.out.println("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+        System.out.println("▓▓                                           ▓▓");
+        System.out.println("▓▓            근태관리프로그램(ADMIN)           ▓▓");
+        System.out.println("▓▓                [직원정보 조회]              ▓▓");
+        System.out.println("▓▓             1. 직원(개인) 조회              ▓▓");
+        System.out.println("▓▓             2. 직원(전체) 조회              ▓▓");
+        System.out.println("▓▓             3. 근태(개인) 조회              ▓▓");
+        System.out.println("▓▓             4. 전직원근태(지정일) 조회       ▓▓");
+        System.out.println("▓▓             5. 직원1인(기간) 조회           ▓▓");
+        System.out.println("▓▓             6. 이 전 메 뉴                 ▓▓");
+        System.out.println("▓▓                                           ▓▓");
+        System.out.println("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+        System.out.println();
         System.out.print("번호를 입력해주세요(1 ~ 6) : ");
+        while (!sc.hasNextInt()) {
+            System.out.println("잘못된 입력입니다. 다시 선택해주세요.");
+            System.out.print("번호를 입력해주세요(1 ~ 6) : ");
+            sc.next();
+        }
         int choiceNumber = sc.nextInt();
         Connection con = getConnection();
 
@@ -202,15 +226,24 @@ public class AdminMenu {
     /* 포상여부조회 메서드 분할 */
     public void compensation() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
-        System.out.println("▓▓   근태관리프로그램(ADMIN)    ▓▓");
-        System.out.println("▓▓       [포상여부 조회]       ▓▓");
-        System.out.println("▓▓    1. 직원페널티(개인) 조회  ▓▓");
-        System.out.println("▓▓    2. 월간 보상여부 조회     ▓▓");
-        System.out.println("▓▓      3. 이 전 메 뉴        ▓▓");
-        System.out.println("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
-
+        System.out.println();
+        System.out.println("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+        System.out.println("▓▓                                           ▓▓");
+        System.out.println("▓▓             근태관리프로그램(ADMIN)          ▓▓");
+        System.out.println("▓▓                 [포상여부 조회]             ▓▓");
+        System.out.println("▓▓             1. 직원페널티(개인) 조회         ▓▓");
+        System.out.println("▓▓             2. 월간 보상여부 조회            ▓▓");
+        System.out.println("▓▓             3. 이 전 메 뉴                  ▓▓");
+        System.out.println("▓▓                                           ▓▓");
+        System.out.println("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+        System.out.println();
         System.out.print("번호를 입력해주세요(1 ~ 3) : ");
+
+        while (!sc.hasNextInt()) {
+            System.out.println("잘못된 입력입니다. 다시 선택해주세요.");
+            System.out.print("번호를 입력해주세요(1 ~ 3) : ");
+            sc.next();
+        }
         int choiceNumber = sc.nextInt();
         Connection con = getConnection();
 
