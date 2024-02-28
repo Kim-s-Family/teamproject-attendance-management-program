@@ -12,10 +12,12 @@ import java.sql.SQLException;
 import java.util.*;
 
 import static com.ohgiraffers.common.JDBCTemplate.*;
+import static com.ohgiraffers.model.dto.EmployeeDTO.empPwd;
 
 public class MgrDAO {
 
-    /* 1. 직원정보조회(부서인원전체) */
+
+    /* 1. 직원정보조회(부서인원전체) *//////////////////////////////////////
     public void departmentEmpInfo() {
 
         Connection con = getConnection();
@@ -34,7 +36,7 @@ public class MgrDAO {
                 System.out.print("본인 확인을 위해 비밀번호를 입력하세요 : ");
                 personalPassword = sc.nextLine();
 
-                if (checkPassword(personalPassword)) {
+                if (personalPassword.equals(empPwd)) {
                     break;
                 } else {
                     System.out.println("유효하지 않은  비밀번호 입니다. 다시 입력해주세요.");
@@ -42,7 +44,7 @@ public class MgrDAO {
             }
             prop.loadFromXML(new FileInputStream("src/main/java/com/ohgiraffers/mapper/attendance-management-query.xml"));
 
-            /* 위에서 입력한 Password로 중간관리자 권한 코드 확인*/
+            /* 위에서 입력한 Password 로 중간관리자 권한 코드 확인*/
             String query = prop.getProperty("checkLoginMgr");
             pstmt = con.prepareStatement(query);
             pstmt.setString(1, personalPassword);
@@ -76,7 +78,7 @@ public class MgrDAO {
                     EmployeeDTO departAllEmp = new EmployeeDTO();
 
                     departAllEmp.setEmpId(rset.getString("emp_id"));
-                    departAllEmp.setEmpPwd(rset.getString("emp_password"));
+                    departAllEmp.setEmpPwd2(rset.getString("emp_password"));
                     departAllEmp.setEmpName(rset.getString("emp_name"));
                     departAllEmp.setPhone(rset.getString("phone"));
                     departAllEmp.setEmail(rset.getString("email"));
@@ -96,7 +98,6 @@ public class MgrDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            close(con);
             close(pstmt);
             close(rset);
         }
@@ -107,10 +108,10 @@ public class MgrDAO {
 
     }
 
-    /* 2-1 일별근태기록 조회(부서인원만)
+    /* 2-1 일별근태기록 조회(부서인원만)///////////////////////////
            (특정 날짜 조회 시 부서 전체 근태기록 조회) */
-
     public List<Map<String, Object>> departmentDailyAttendance(Connection con) {
+
 
         PreparedStatement pstmt = null;
         ResultSet rset = null;
@@ -126,7 +127,7 @@ public class MgrDAO {
             System.out.print("본인 확인을 위해 비밀번호를 입력하세요 : ");
             personalPassword = sc.nextLine();
 
-            if (checkPassword(personalPassword)) {
+            if (personalPassword.equals(empPwd)) {
                 break;
             } else {
                 System.out.println("유효하지 않은  비밀번호 입니다. 다시 입력해주세요.");
@@ -153,15 +154,20 @@ public class MgrDAO {
 
             while (true) {
                 System.out.print("조회하실 날짜를 입력하세요 ex)20240131 : ");
-                selectDate = sc.nextInt();
+                String inputDate = sc.nextLine();
 
-                if (checkDate(selectDate)) {
-                    break;
-                } else {
-                    System.out.println("유효하지 않은 날짜입니다. 다시 입력해주세요.");
-                    return departmentDailyAttendance(con);
+                try {
+                    selectDate = Integer.parseInt(inputDate);
+                    if(checkDate(selectDate)) {
+                        break;
+                    } else {
+                        System.out.println("유효하지 않은 날짜입니다. 다시 입력해주세요.");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("숫자 형식의 날짜를 입력해주세요.");
                 }
             }
+
 
             String checkMgrDepartment = prop.getProperty("checkMgrDepartment");
             pstmt = con.prepareStatement(checkMgrDepartment);
@@ -205,7 +211,6 @@ public class MgrDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            close(con);
             close(pstmt);
             close(rset);
         }
@@ -214,9 +219,8 @@ public class MgrDAO {
 
     }
 
-
     /* 2-2 기간별근태기록 조회(부서인원만)
-     *      (시작일, 마지막일 조회 시 부서 전체 근태기록 조회) */
+     *      (시작일, 마지막일 조회 시 부서 전체 근태기록 조회) *///////////////////////////
     public List<Map<String, Object>> departmentPeriodAttendance(Connection con) {
 
         PreparedStatement pstmt = null;
@@ -235,7 +239,7 @@ public class MgrDAO {
             System.out.print("본인 확인을 위해 비밀번호를 입력하세요 : ");
             personalPassword = sc.nextLine();
 
-            if (checkPassword(personalPassword)) {
+            if (personalPassword.equals(empPwd)) {
                 break;
             } else {
                 System.out.println("유효하지 않은  비밀번호 입니다. 다시 입력해주세요.");
@@ -258,12 +262,21 @@ public class MgrDAO {
                 }
             }
 
-            System.out.print("조회를 시작할 날짜를 입력하세요 ex)20240101 : ");
+            System.out.print("조회를 시작할 날짜를 입력하세요 ex) 20240101 : ");
+            while (!sc.hasNextInt()) {
+                System.out.println("유효하지 않은 입력입니다.");
+                System.out.print("숫자 형식의 날짜를 입력하세요 ex) 20240101 : ");
+                sc.next();
+            }
             selectFirstDate = sc.nextInt();
 
-            System.out.print("마지막 날짜를 입력하세요 ex)20240131 : ");
+            System.out.print("마지막 날짜를 입력하세요 ex) 20240101 : ");
+            while (!sc.hasNextInt()) {
+                System.out.println("유효하지 않은 입력입니다.");
+                System.out.print("숫자 형식의 날짜를 입력하세요 ex) 20240131 : ");
+                sc.next();
+            }
             selectSecondDate = sc.nextInt();
-
 
             String checkMgrDepartment = prop.getProperty("checkMgrDepartment");
             pstmt = con.prepareStatement(checkMgrDepartment);
@@ -302,20 +315,18 @@ public class MgrDAO {
 
             }
 
-
         } catch (IOException e) {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            close(con);
+        }finally {
             close(pstmt);
             close(rset);
         }
         return dpaList;
     }
 
-    /* 3. 월간 보상여부 조회(부서인원만)*/
+    /* 3. 월간 보상여부 조회(부서인원만)*////////////////////////
     public List<Map<String, Object>> departmentEmpPenaltyInfo(Connection con) {
 
         PreparedStatement pstmt = null;
@@ -333,7 +344,7 @@ public class MgrDAO {
             System.out.print("본인 확인을 위해 비밀번호를 입력하세요 : ");
             personalPassword = sc.nextLine();
 
-            if (checkPassword(personalPassword)) {
+            if (personalPassword.equals(empPwd)) {
                 break;
             } else {
                 System.out.println("유효하지 않은  비밀번호 입니다. 다시 입력해주세요.");
@@ -385,7 +396,7 @@ public class MgrDAO {
                 while (rset.next()) {
                     Map<String, Object> depaMonthPenalty = new LinkedHashMap<>();
 
-                    depaMonthPenalty.put("월 ", rset.getInt("month_code") + "월");
+                    depaMonthPenalty.put("Month ", rset.getInt("month_code") + "월");
                     depaMonthPenalty.put("ID ", rset.getString("emp_id"));
                     depaMonthPenalty.put("이름 ", rset.getString("emp_name"));
                     depaMonthPenalty.put("부서코드 ", rset.getString("department_code"));
@@ -402,6 +413,9 @@ public class MgrDAO {
             throw new RuntimeException(e);
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }finally {
+            close(pstmt);
+            close(rset);
         }
 
         return departmentEmpPenaltyList;

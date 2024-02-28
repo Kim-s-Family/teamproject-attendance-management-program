@@ -16,7 +16,7 @@ import static com.ohgiraffers.common.JDBCTemplate.close;
 
 public class EmpDAO {
 
-    /* 본인 정보 조회(비밀번호로 본인확인) */
+    /* 본인 정보 조회(비밀번호로 본인확인) */////////////////////////
     public void retrievePersonalInfo() {
 
         Connection con = getConnection();
@@ -35,10 +35,10 @@ public class EmpDAO {
             System.out.print("본인 확인을 위해 비밀번호를 입력하세요 : ");
             personalPassword = sc.nextLine();
 
-            if (checkPassword(personalPassword)) {
+            if (personalPassword.equals(EmployeeDTO.empPwd)) {
                 break;
             } else {
-                System.out.println("유효하지 않은  비밀번호 입니다. 다시 입력해주세요.");
+                System.out.println("유효하지 않은 비밀번호 입니다. 다시 입력해주세요.");
             }
         }
         try {
@@ -51,7 +51,7 @@ public class EmpDAO {
 
             if (rset.next()) {
                 retriveEmp.setEmpId(rset.getString("emp_id"));
-                retriveEmp.setEmpPwd(rset.getString("emp_password"));
+                retriveEmp.setEmpPwd2(rset.getString("emp_password"));
                 retriveEmp.setEmpName(rset.getString("emp_name"));
                 retriveEmp.setPhone(rset.getString("phone"));
                 retriveEmp.setEmail(rset.getString("email"));
@@ -66,7 +66,6 @@ public class EmpDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            close(con);
             close(pstmt);
             close(rset);
         }
@@ -76,7 +75,7 @@ public class EmpDAO {
 
     }
 
-    /* 본인 일별 근태조회(비밀번호로 본인 확인) */
+    /* 본인 일별 근태조회(비밀번호로 본인 확인) *//////////////////////
     public List<Map<String, Object>> dailyPersonalAttendanceInfo(Connection con) {
         PreparedStatement pstmt = null;
         ResultSet rset = null;
@@ -94,21 +93,25 @@ public class EmpDAO {
             System.out.print("본인 확인을 위해 비밀번호를 입력하세요 : ");
             personalPassword = sc.nextLine();
 
-            if (checkPassword(personalPassword)) {
+            if (personalPassword.equals(EmployeeDTO.empPwd)) {
                 break;
             } else {
                 System.out.println("유효하지 않은 비밀번호 입니다. 다시 입력해주세요.");
             }
         }
-
         while (true) {
-            System.out.print("조회하실 날짜를 입력하세요 (ex : 20240131) : ");
-            selectDate = sc.nextInt();
+            System.out.print("조회하실 날짜를 입력하세요 ex)20240131 : ");
+            String inputDate = sc.nextLine();
 
-            if (checkDate(selectDate)) {
-                break;
-            } else {
-                System.out.println("유효하지 않은 날짜입니다. 다시 입력해주세요.");
+            try {
+                selectDate = Integer.parseInt(inputDate);
+                if(checkDate(selectDate)) {
+                    break;
+                } else {
+                    System.out.println("유효하지 않은 날짜입니다. 다시 입력해주세요.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("숫자 형식의 날짜를 입력해주세요.");
             }
         }
 
@@ -143,12 +146,15 @@ public class EmpDAO {
             throw new RuntimeException(e);
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }finally {
+            close(pstmt);
+            close(rset);
         }
         return dailyPersonalAttendanceInfoList;
 
     }
 
-    /* 본인 기간별 근태조회(비밀번호로 본인 확인) */
+    /* 본인 기간별 근태조회(비밀번호로 본인 확인) *////////////////////////////
     public List<Map<String, Object>> periodPersonalAttendanceInfo(Connection con) {
         PreparedStatement pstmt = null;
         ResultSet rset = null;
@@ -166,8 +172,7 @@ public class EmpDAO {
 
             System.out.print("본인 확인을 위해 비밀번호를 입력하세요 : ");
             personalPassword = sc.nextLine();
-
-            if (checkPassword(personalPassword)) {
+            if (personalPassword.equals(EmployeeDTO.empPwd)) {
                 break;
             } else {
                 System.out.println("유효하지 않은 비밀번호 입니다. 다시 입력해주세요.");
@@ -175,9 +180,21 @@ public class EmpDAO {
         }
 
         System.out.print("조회를 시작할 날짜를 입력하세요 ex) 20240101 : ");
+        while (!sc.hasNextInt()) {
+            System.out.println("유효하지 않은 입력입니다.");
+            System.out.print("숫자 형식의 날짜를 입력하세요 ex) 20240101 : ");
+            sc.next();
+        }
         selectFirstDate = sc.nextInt();
+
         System.out.print("마지막 날짜를 입력하세요 ex) 20240101 : ");
+        while (!sc.hasNextInt()) {
+            System.out.println("유효하지 않은 입력입니다.");
+            System.out.print("숫자 형식의 날짜를 입력하세요 ex) 20240131 : ");
+            sc.next();
+        }
         selectSecondDate = sc.nextInt();
+
 
         try {
             prop.loadFromXML(new FileInputStream("src/main/java/com/ohgiraffers/mapper/attendance-management-query.xml"));
@@ -211,12 +228,15 @@ public class EmpDAO {
             throw new RuntimeException(e);
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }finally {
+            close(pstmt);
+            close(rset);
         }
         return periodPersonalAttendanceInfoList;
 
     }
 
-    /* 본인 페널티 내역 조회 */
+    /* 본인 페널티 내역 조회 *///////////////////////////////////////
     public List<Map<String, Object>> personalPenaltyInfo(Connection con) {
 
         PreparedStatement pstmt = null;
@@ -232,7 +252,7 @@ public class EmpDAO {
             System.out.print("본인 확인을 위해 비밀번호를 입력하세요 : ");
             personalPassword = sc.nextLine();
 
-            if (checkPassword(personalPassword)) {
+            if (personalPassword.equals(EmployeeDTO.empPwd)) {
                 break;
             } else {
                 System.out.println("유효하지 않은  비밀번호 입니다. 다시 입력해주세요.");
@@ -256,6 +276,7 @@ public class EmpDAO {
                 Map<String, Object> personalPenalty = new LinkedHashMap<>();
 
                 personalPenalty.put("ID ", rset.getString("emp_id"));
+                personalPenalty.put("이름 ", rset.getString("emp_name"));
                 personalPenalty.put("날짜 ", rset.getString("date_code"));
                 personalPenalty.put("페널티요소 ", rset.getString("penalty_factor"));
                 personalPenalty.put("페널티점수 ", rset.getInt("penalty_score"));
@@ -271,7 +292,6 @@ public class EmpDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            close(con);
             close(pstmt);
             close(rset);
         }
@@ -281,7 +301,7 @@ public class EmpDAO {
 
     }
 
-    /* 본인 한달 페널티 내역 조회 */
+    /* 본인 한달 페널티 내역 조회 *////////////////////////////
     public List<Map<String, Object>> monthPersonalPenaltyInfo(Connection con) {
         PreparedStatement pstmt = null;
         ResultSet rset = null;
@@ -297,7 +317,7 @@ public class EmpDAO {
             System.out.print("본인 확인을 위해 비밀번호를 입력하세요 : ");
             personalPassword = sc.nextLine();
 
-            if (checkPassword(personalPassword)) {
+            if (personalPassword.equals(EmployeeDTO.empPwd)) {
                 break;
             } else {
                 System.out.println("유효하지 않은 비밀번호 입니다. 다시 입력해주세요.");
@@ -346,7 +366,6 @@ public class EmpDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            close(con);
             close(pstmt);
             close(rset);
         }

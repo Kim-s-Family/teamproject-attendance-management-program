@@ -5,7 +5,8 @@ import java.io.Serializable;
 public class EmployeeDTO implements Serializable {
 
     private String empId;               // 직원 ID
-    private String empPwd;              // 직원 PW
+    public static String empPwd;       // 직원 PW
+    public String empPwd2;
     private String empName;             // 직원 이름
     private String phone;               // 연락처(String인 이유 : 기입을 '-' 포함하기 위해)
     private String email;               // 이메일
@@ -21,9 +22,9 @@ public class EmployeeDTO implements Serializable {
 
     /* 매개변수가 있는 생성자 생성 */
 
-    public EmployeeDTO(String empId, String empPwd, String empName, String phone, String email, String departmentCode, String positionCode, String empIdentification, String paymentCode) {
+    public EmployeeDTO(String empId, String empPwd2, String empName, String phone, String email, String departmentCode, String positionCode, String empIdentification, String paymentCode) {
         this.empId = empId;
-        this.empPwd = empPwd;
+        this.empPwd2 = empPwd2;
         this.empName = empName;
         this.phone = phone;
         this.email = email;
@@ -32,7 +33,16 @@ public class EmployeeDTO implements Serializable {
         this.empIdentification = empIdentification;
         this.paymentCode = paymentCode;
     }
+
     /* getter / setter 생성 */
+
+    public String getEmpPwd2() {
+        return empPwd2;
+    }
+
+    public void setEmpPwd2(String empPwd2) {
+        this.empPwd2 = empPwd2;
+    }
 
     public String getEmpId() {
         return empId;
@@ -111,7 +121,7 @@ public class EmployeeDTO implements Serializable {
     public String toString() {
         return "직원정보[" +
                 "ID = '" + empId + '\'' +
-                ", PASSWORD = '" + empPwd + '\'' +
+                ", PASSWORD = '" + empPwd2 + '\'' +
                 ", 이름 = '" + empName + '\'' +
                 ", 연락처 = '" + phone + '\'' +
                 ", 이메일 = '" + email + '\'' +
