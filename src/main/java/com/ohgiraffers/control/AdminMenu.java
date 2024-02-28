@@ -22,10 +22,10 @@ public class AdminMenu {
         System.out.println("▓▓                                           ▓▓");
         System.out.println("▓▓            근태관리프로그램(ADMIN)           ▓▓");
         System.out.println("▓▓              1. 직원정보 입력               ▓▓");
-        System.out.println("▓▓              2. 직원정보 수정               ▓▓");
-        System.out.println("▓▓              3. 직원정보 조회               ▓▓");
+        System.out.println("▓▓              2. 직원정보 조회               ▓▓");
+        System.out.println("▓▓              3. 직원정보 수정               ▓▓");
         System.out.println("▓▓              4. 직원정보 삭제               ▓▓");
-        System.out.println("▓▓              5. 포상여부 조회               ▓▓");
+        System.out.println("▓▓              5. 보상여부 조회               ▓▓");
         System.out.println("▓▓              6. 로 그 아 웃                ▓▓");
         System.out.println("▓▓                                           ▓▓");
         System.out.println("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
@@ -47,12 +47,12 @@ public class AdminMenu {
                 adminMenu();
                 break;
             case 2:
-                System.out.println("2. 직원정보 수정을 선택하셨습니다.");
-                updateInfo();
-                break;
-            case 3:
                 System.out.println("직원정보 조회를 선택하셨습니다.");
                 readInfo();
+                break;
+            case 3:
+                System.out.println("2. 직원정보 수정을 선택하셨습니다.");
+                updateInfo();
                 break;
             case 4:
                 System.out.println("직원정보 삭제를 선택하셨습니다.");
@@ -230,7 +230,7 @@ public class AdminMenu {
         System.out.println("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
         System.out.println("▓▓                                           ▓▓");
         System.out.println("▓▓             근태관리프로그램(ADMIN)          ▓▓");
-        System.out.println("▓▓                 [포상여부 조회]             ▓▓");
+        System.out.println("▓▓                 [보상여부 조회]             ▓▓");
         System.out.println("▓▓             1. 직원페널티(개인) 조회         ▓▓");
         System.out.println("▓▓             2. 월간 보상여부 조회            ▓▓");
         System.out.println("▓▓             3. 이 전 메 뉴                  ▓▓");

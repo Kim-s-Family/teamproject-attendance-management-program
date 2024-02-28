@@ -24,7 +24,7 @@ public class EMPMenu {
         System.out.println("▓▓             근태관리프로그램(EMP)            ▓▓");
         System.out.println("▓▓             1. 직원정보조회(본인)            ▓▓");
         System.out.println("▓▓             2. 근태기록조회(본인)            ▓▓");
-        System.out.println("▓▓             3. 포상여부조회(본인)            ▓▓");
+        System.out.println("▓▓             3. 보상여부조회(본인)            ▓▓");
         System.out.println("▓▓             4. 로 그 아 웃                  ▓▓");
         System.out.println("▓▓                                           ▓▓");
         System.out.println("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");

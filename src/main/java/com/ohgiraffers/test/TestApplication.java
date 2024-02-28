@@ -19,10 +19,10 @@ public class TestApplication {
     public static void main(String[] args) {
 
         /* 아스키코드를 활용한 첫 이미지 */
-//        startLogo(); // 작동 확인 완료
+        startLogo(); // 작동 확인 완료
 
         /* 로그인 화면 (MainMenu 클래스) */
-        loginEmp.login(); // 작동 확인 완료
+//        loginEmp.login(); // 작동 확인 완료
 
         /* 관리자 페이지 테스트 (AdminDAO 클래스) */
         AdminDAO adminDAO = new AdminDAO();

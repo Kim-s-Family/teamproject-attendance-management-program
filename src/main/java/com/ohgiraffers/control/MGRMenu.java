@@ -23,7 +23,7 @@ public class MGRMenu {
         System.out.println("▓▓             근태관리프로그램(MGR)            ▓▓");
         System.out.println("▓▓            1. 직원정보조회(부서내)            ▓▓");
         System.out.println("▓▓            2. 근태기록조회(부서내)            ▓▓");
-        System.out.println("▓▓            3. 포상여부조회(부서내)            ▓▓");
+        System.out.println("▓▓            3. 보상여부조회(부서내)            ▓▓");
         System.out.println("▓▓            4. 로 그 아 웃                   ▓▓");
         System.out.println("▓▓                                           ▓▓");
         System.out.println("▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
